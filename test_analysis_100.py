@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-file_path="https://raw.githubusercontent.com/forittik/test_analysis_100/refs/heads/main/final_mereged_data.csv"
+
 def load_data(file_path):
     df = pd.read_csv(file_path, header=0, encoding='ISO-8859-1')
     return df
@@ -81,7 +81,7 @@ def main():
     st.title("Student Performance Dashboard")
 
     # Load data
-    data = load_data('jee_student_data_75_questions.csv')
+    data = load_data("https://raw.githubusercontent.com/forittik/test_analysis_100/refs/heads/main/final_mereged_data.csv")
 
     # Subject-wise Performance
     st.subheader("Subject-wise Scores")
