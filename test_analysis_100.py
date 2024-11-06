@@ -9,9 +9,9 @@ def load_data(file_path):
 
 def generate_subject_performance_chart(data):
     subject_scores = {
-        'Physics': data['Marks_in_physics'].sum(),
-        'Chemistry': data['Marks_in_chemistry'].sum(),
-        'Mathematics': data['Marks_in_mathematics'].sum()
+        'Physics': data['Physics'].sum(),
+        'Chemistry': data['Chemistry'].sum(),
+        'Mathematics': data['Mathematics'].sum()
     }
     total_marks = data.shape[0] * 75 * 4
 
@@ -26,9 +26,9 @@ def generate_subject_performance_chart(data):
 
 def generate_performance_distribution_chart(data):
     subject_scores = {
-        'Physics': (data['Marks_in_physics'].sum() / (data.shape[0] * 75 * 4/3)) * 100,
-        'Chemistry': (data['Marks_in_chemistry'].sum() / (data.shape[0] * 75 * 4/3)) * 100,
-        'Mathematics': (data['Marks_in_mathematics'].sum() / (data.shape[0] * 75 * 4/3)) * 100
+        'Physics': (data['Physics'].sum() / (data.shape[0] * 75 * 4/3)) * 100,
+        'Chemistry': (data['Chemistry'].sum() / (data.shape[0] * 75 * 4/3)) * 100,
+        'Mathematics': (data['Mathematics'].sum() / (data.shape[0] * 75 * 4/3)) * 100
     }
 
     fig = go.Figure()
@@ -48,19 +48,19 @@ def generate_performance_distribution_chart(data):
 def generate_chapter_performance_charts(data):
     physics_data = pd.DataFrame({
         'chapter': data['physics_chapters'].explode().unique(),
-        'marks': data.groupby('physics_chapters')['Marks_in_physics'].sum().reindex(data['physics_chapters'].explode().unique(), fill_value=0).astype(int),
+        'marks': data.groupby('physics_chapters')['Physics'].sum().reindex(data['physics_chapters'].explode().unique(), fill_value=0).astype(int),
         'max_marks': data.shape[0] * 4
     })
 
     chemistry_data = pd.DataFrame({
         'chapter': data['chemistry_chapters'].explode().unique(),
-        'marks': data.groupby('chemistry_chapters')['Marks_in_chemistry'].sum().reindex(data['chemistry_chapters'].explode().unique(), fill_value=0).astype(int),
+        'marks': data.groupby('chemistry_chapters')['Chemistry'].sum().reindex(data['chemistry_chapters'].explode().unique(), fill_value=0).astype(int),
         'max_marks': data.shape[0] * 4
     })
 
     math_data = pd.DataFrame({
         'chapter': data['mathematics_chapters'].explode().unique(),
-        'marks': data.groupby('mathematics_chapters')['Marks_in_mathematics'].sum().reindex(data['mathematics_chapters'].explode().unique(), fill_value=0).astype(int),
+        'marks': data.groupby('mathematics_chapters')['Mathematics'].sum().reindex(data['mathematics_chapters'].explode().unique(), fill_value=0).astype(int),
         'max_marks': data.shape[0] * 4
     })
 
